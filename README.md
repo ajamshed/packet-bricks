@@ -1,6 +1,4 @@
-==============
-README
-==============
+## README ##
 
 Packet BRICKS is a Linux/FreeBSD daemon that is capable of receiving
 and distributing ingress traffic to userland applications. Its main 
