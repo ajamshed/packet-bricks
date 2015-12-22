@@ -23,31 +23,31 @@ The following guide provides a walkthrough of the
 /usr/local/etc/bricks-scripts/startup-*.lua files and also explains
 what this system is capable of.
 ```text
-								     _________
-													        |	      |
-                    													                  |  APP 1  |
-                    															     	              |_________|
-                    																	                eth3}0    /
-          																				   	                    ______________/
-          																							                         |
-          																										                      |           _________
-          																												         	                   |    eth3}1    |       |
-          																																      	    	               |  ____________|  APP 2  |
-          																																			          		     	            | |            |_________|
-   1/10 Gbps link     																																							         	        | | 
-   |||||||||||||| ------->eth3{PACKET-BRICKS}																																							     _________
-                  																																										            | |  eth3}2    |       |
-                																																											      	 	        | |____________|  APP 3  |
-                    																																														  		       |        |_________|
-                																																																       		       |
-                																																																		               |    eth3}3
-                																																																			                   |_____________  
-                    																																																					   		               \
-                        																																																							                \_________
-                        																																																									                 |       |
-                    																																																												                             |  APP 4  |
-                                																																																													     	           |_________|
-```																																																																			             
+                    					    	     _________
+                    						        |	      |
+                    						        |  APP 1  |
+                    						        |_________|
+                    				   	   eth3}0    /
+          	   	    	      	      ______________/
+          	   	    	      	     |
+          	   	    	      	     |		         _________
+          	   	    	      	     |    eth3}1    |	      |
+          	   	    	      	     |  ____________|  APP 2  |
+          	   	    	      	     | |            |_________|
+   1/10 Gbps link     	     	     | |	
+   |||||||||||||| ------->eth3{PACKET-BRICKS}	     _________
+                				     | |  eth3}2    |	      |
+                				     | |____________|  APP 3  |
+                    				 |  		    |_________|
+                				     |
+                				     |    eth3}3
+                	 			     |_____________  
+                    				     		   \
+                        						    \_________
+                        	      			        |	      |
+                    	                            |  APP 4  |
+                                				    |_________|
+```		         
 Figure 1: A sample packet-bricks instance redirecting ingress traffic from eth3 to 4 userland applications using a LoadBalancer brick
 
 
@@ -69,8 +69,8 @@ LUA-based shell. Type the following command to print the help menu:
 	bricks> BRICKS.help()
 	BRICKS Commands:
     	    help()
-    	        print_status()
-    		    show_stats()
+    	    print_status()
+    	    show_stats()
             shutdown()
           Available subsystems within BRICKS have their own help() methods:
           pkteng
@@ -118,14 +118,14 @@ engine constructs called "bricks". Currently packet-bricks has
 the following built-in bricks that are available for use:
 
 1. LoadBalancer: Brick that may be used to split flow-wise
-   		        traffic to different applications using netmap 
-				 pipes.
+   		 traffic to different applications using netmap 
+		 pipes.
 
 2. Duplicator: Brick that may be used to duplicate traffic
-   	              across each registered netmap pipe.
+   	       across each registered netmap pipe.
 
 3. Merge: Brick that may be used to combine traffic between
-   	    2 or more netmap pipes.
+   	  2 or more netmap pipes.
 
 4. Filter: UNDER CONSTRUCTION.
 
@@ -143,8 +143,8 @@ as:
 	bricks> lb = Brick.new("LoadBalancer", 2)
 	bricks> lb:connect_input("eth3")
 	bricks> lb:connect_output("eth3{0", "eth3{1", 
-					    	        "eth3{2", "eth3{3", "eth2")
-							bricks> pe:link(lb)
+				  "eth3{2", "eth3{3", "eth2")
+	bricks> pe:link(lb)
 ```
 This binds pkteng pe with LoadBalancer brick and asks the system 
 to read ingress packets from eth3 and split them flow-wise based on 
