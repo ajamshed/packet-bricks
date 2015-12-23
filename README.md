@@ -27,7 +27,7 @@ what this system is capable of.
                     						        |	      |
                     						        |  APP 1  |
                     						        |_________|
-                    				   	   eth3}0    /
+                    				   	  eth3}0     /
           	   	    	      	      ______________/
           	   	    	      	     |
           	   	    	      	     |		         _________
